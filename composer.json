@@ -1,0 +1,49 @@
+{
+    "name": "stechbd/spe",
+    "version": "1.0.0",
+    "description": "S PHP Engine (SPE) is a simple and lightweight MVC-based framework for PHP.",
+    "keywords": [
+        "mvc",
+        "framework",
+        "php",
+        "lightweight",
+        "simple",
+        "engine",
+        "spe",
+        "sphpengine"
+    ],
+    "type": "framework",
+    "license": "STechBD",
+    "homepage": "https://www.stechbd.net/project/CookieCons/",
+    "support": {
+        "issues": "https://github.com/STechBD/CookieCons/issues",
+        "source": "https://github.com/STechBD/CookieCons",
+        "email": "product@stechbd.net",
+        "chat": "https://www.facebook.com/STechBD.Net/",
+        "docs": "https://docs.stechbd.net/CookieCons/",
+        "tickets": "https://clients.stechbd.net"
+    },
+    "autoload": {
+        "psr-4": {
+            "STechBD\\SPE\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "S Technologies",
+            "email": "product@stechbd.net",
+            "homepage": "https://www.stechbd.net",
+            "role": "Developer"
+        },
+        {
+            "name": "Md. Ashraful Alam Shemul",
+            "email": "aashemul@gmail.com",
+            "homepage": "https://www.aashemul.com",
+            "role": "Author"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4"
+    }
+}
