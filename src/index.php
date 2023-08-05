@@ -33,13 +33,35 @@ if(PHP_VERSION_ID < 70400 === true)
  */
 const SPE = true;
 
-# Directory Separator
+/**
+ * Define SPE Version.
+ * @since 1.0.0
+ */
+const SPE_VERSION = '1.0.0';
+
+/**
+ * Define SPE Version Code.
+ * @since 1.0.0
+ */
+const SPE_VERSION_CODE = 1;
+
+/**
+ * Define required directories.
+ *
+ * @const SPE_DS Directory Separator
+ * @const SPE_DIR Root Directory
+ * @const SPE_APP App Directory
+ * @const SPE_FILE Static files' Directory
+ * @const SPE_INC Include Directory
+ * @const SPE_INS Installation Directory
+ * @const SPE_SYS System Directory
+ * @const SPE_CORE Core Directory
+ *
+ * @since 1.0.0
+ */
+
 const SPE_DS = DIRECTORY_SEPARATOR;
-
-# SPE Root Directory
 const SPE_DIR = __DIR__ . SPE_DS;
-
-# SPE Other Directories
 const SPE_APP = SPE_DIR . 'spe-app' . SPE_DS;
 const SPE_FILE = SPE_DIR . 'spe-file' . SPE_DS;
 const SPE_INC = SPE_DIR . 'spe-include' . SPE_DS;
@@ -47,13 +69,34 @@ const SPE_INS = SPE_DIR . 'spe-install' . SPE_DS;
 const SPE_SYS = SPE_INC . 'system' . SPE_DS;
 const SPE_CORE = SPE_INC . 'core' . SPE_DS;
 
-# SPE Start Time
+/**
+ * Define app starting time.
+ * @since 1.0.0
+ */
 define('SPE_START_TIME', array_sum(explode(' ', microtime())));
 
-# Requires SPE Initialization
+/**
+ * Define app starting memory usage.
+ * @since 1.0.0
+ */
+define('SPE_START_MEMORY', memory_get_usage());
+
+/**
+ * Define app starting memory peak usage.
+ * @since 1.0.0
+ */
+define('SPE_START_MEMORY_PEAK', memory_get_peak_usage());
+
+/**
+ * Include the initialization file.
+ * @since 1.0.0
+ */
 require(SPE_INC . 'spe.init.php');
 
-# Print the output
+/**
+ * Show output. This is a development feature.
+ * @since 1.0.0
+ */
 echo('App: ' . speRouter::$app . ', Module: ' . speRouter::$module . ', Block: ' . speRouter::$block);
 
 /*if($url == 'index')
