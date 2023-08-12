@@ -14,7 +14,7 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: March 3, 2021
+ * Updated: August 13, 2023
 */
 
 # Check if SPE is defined.
@@ -23,24 +23,18 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
 class speRouter
 {
     /**
-     * @var string|string[]
+     * @var string|string[] $route Current route.
+     * @var string $app Current app.
+     * @var string $module Current module.
+     * @var string $block Current block.
+     *
+     * @since 1.0.0
      */
-    protected static $route;
-
-    /**
-     * @var string
-     */
-    public static $app;
-
-    /**
-     * @var string
-     */
-    public static $module;
-
-    /**
-     * @var string
-     */
-    public static $block;
+    protected static string|array $route;
+    public static string $app;
+    public static string $module;
+    public static string $block;
+	public static string $param;
 
     public function __construct()
     {
@@ -49,5 +43,7 @@ class speRouter
         self::$app = self::$route[0] ?? 'spe';
         self::$module = self::$route[1] ?? 'main';
         self::$block = self::$route[2] ?? 'index';
+
+		self::$param = isset($_GET['p']) ?? '';
     }
 }

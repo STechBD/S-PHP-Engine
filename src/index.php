@@ -91,7 +91,8 @@ define('SPE_START_MEMORY_PEAK', memory_get_peak_usage());
  * Include the initialization file.
  * @since 1.0.0
  */
-require(SPE_INC . 'spe.init.php');
+require(SPE_INC . 'Init.php');
+new speInit();
 
 /**
  * Show output. This is a development feature.

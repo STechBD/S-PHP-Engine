@@ -21,12 +21,18 @@
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
 
 # Loading some important files
-require(SPE_SYS . 'spe.db.php');
-require(SPE_SYS . 'spe.router.php');
-require(SPE_SYS . 'spe.app.php');
+require(SPE_SYS . 'DB.php');
+require(SPE_SYS . 'Router.php');
+require(SPE_SYS . 'App.php');
+new speRouter();
+
+class speInit
+{
+
+}
 
 # Load the router
-new speRouter();
+
 
 /*if(speApp::isActive())
 {
