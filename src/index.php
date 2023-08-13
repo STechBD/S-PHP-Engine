@@ -98,7 +98,41 @@ new speInit();
  * Show output. This is a development feature.
  * @since 1.0.0
  */
-echo('App: ' . speRouter::$app . ', Module: ' . speRouter::$module . ', Block: ' . speRouter::$block);
+echo('App: ' . speRouter::$app . ', Module: ' . speRouter::$module . ', Block: ' . speRouter::$block . ', and Param: ' . speRouter::$param);
+
+?>
+<table style="width: 100%; text-align: center; font-size: larger;">
+	<thead>
+	<tr>
+		<th>App</th>
+		<th>Module</th>
+		<th>Block</th>
+		<th>Param</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><?php echo(speRouter::$app); ?></td>
+		<td><?php echo(speRouter::$module); ?></td>
+		<td><?php echo(speRouter::$block); ?></td>
+		<td><?php echo(speRouter::$param); ?></td>
+	</tr>
+	</tbody>
+</table>
+
+<?php
+
+$s = $_GET['s'];
+$p = $_GET['p'];
+echo 'S: ' . $s . ' and P: ' . $p;
+
+//if (strpos($request, '?') !== false) {
+//list($s, $p) = explode('?', $request, 2);
+//} else {
+//$s = $request;
+//$p = '';
+//}
+
 
 /*if($url == 'index')
 {

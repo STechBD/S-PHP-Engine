@@ -44,6 +44,6 @@ class speRouter
         self::$module = self::$route[1] ?? 'main';
         self::$block = self::$route[2] ?? 'index';
 
-		self::$param = isset($_GET['p']) ?? '';
+		self::$param = isset($_GET['p']) ?? null;
     }
 }
