@@ -14,22 +14,41 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: February 26, 2021
-*/
+ * Updated: August 14, 2023
+ */
 
-# Check if SPE is defined.
+
+namespace STechBD\SPE;
+
+use STechBD\SPE\System\App as speApp;
+use STechBD\SPE\System\DB as speDB;
+use STechBD\SPE\System\Router as speRouter;
+
+/**
+ * Check if SPE is defined to prevent unauthorized access to this file.
+ * @since 1.0.0
+ */
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
 
-# Loading some important files
-require(SPE_SYS . 'DB.php');
-require(SPE_SYS . 'Router.php');
-require(SPE_SYS . 'App.php');
-new speRouter();
 
-class speInit
+class Init
 {
+	public function __construct()
+	{
+		new speRouter();
+		new speDB();
+		new speApp();
 
+		$controller = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'controller' . SPE_DS . speRouter::$block . '.php';
+		$model = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'model' . SPE_DS . speRouter::$block . '.php';
+		$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . 'template' . SPE_DS . speApp::$theme . SPE_DS . speRouter::$block . '.php';
+
+		require_once($controller);
+		require_once($model);
+		require_once($template);
+	}
 }
+
 
 # Load the router
 

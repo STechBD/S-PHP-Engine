@@ -15,15 +15,15 @@
  * Contact: product@stechbd.net
  * Created: August 14, 2020
  * Updated: February 21, 2021
-*/
+ */
 
 
 /**
  * Check if SPE is running on PHP 7.4 or newer.
  * @since 1.0.0
  */
-if(PHP_VERSION_ID < 70400 === true)
-{
+
+if (PHP_VERSION_ID < 70400 === true) {
 	exit('SPE requires PHP 7.4 or newer.');
 }
 
@@ -46,10 +46,10 @@ const SPE_VERSION = '1.0.0';
 const SPE_VERSION_CODE = 1;
 
 /**
- * Define required directories.
+ * Defining required directories.
  *
  * @const SPE_DS Directory Separator
- * @const SPE_DIR Root Directory
+ * @const SPE_ROOT Root Directory
  * @const SPE_APP App Directory
  * @const SPE_FILE Static files' Directory
  * @const SPE_INC Include Directory
@@ -61,11 +61,11 @@ const SPE_VERSION_CODE = 1;
  */
 
 const SPE_DS = DIRECTORY_SEPARATOR;
-const SPE_DIR = __DIR__ . SPE_DS;
-const SPE_APP = SPE_DIR . 'spe-app' . SPE_DS;
-const SPE_FILE = SPE_DIR . 'spe-file' . SPE_DS;
-const SPE_INC = SPE_DIR . 'spe-include' . SPE_DS;
-const SPE_INS = SPE_DIR . 'spe-install' . SPE_DS;
+const SPE_ROOT = __DIR__ . SPE_DS;
+const SPE_APP = SPE_ROOT . 'spe-app' . SPE_DS;
+const SPE_FILE = SPE_ROOT . 'spe-file' . SPE_DS;
+const SPE_INC = SPE_ROOT . 'spe-include' . SPE_DS;
+const SPE_INS = SPE_ROOT . 'spe-install' . SPE_DS;
 const SPE_SYS = SPE_INC . 'system' . SPE_DS;
 const SPE_CORE = SPE_INC . 'core' . SPE_DS;
 
@@ -88,88 +88,15 @@ define('SPE_START_MEMORY', memory_get_usage());
 define('SPE_START_MEMORY_PEAK', memory_get_peak_usage());
 
 /**
- * Include the initialization file.
+ * Loading the autoloader.
  * @since 1.0.0
  */
-require(SPE_INC . 'Init.php');
-new speInit();
+require_once(SPE_INC . 'vendor' . SPE_DS . 'autoload.php');
 
 /**
- * Show output. This is a development feature.
+ * Initializing the system.
  * @since 1.0.0
  */
-echo('App: ' . speRouter::$app . ', Module: ' . speRouter::$module . ', Block: ' . speRouter::$block . ', and Param: ' . speRouter::$param);
+use STechBD\SPE\Init as speInit;
 
-?>
-<table style="width: 100%; text-align: center; font-size: larger;">
-	<thead>
-	<tr>
-		<th>App</th>
-		<th>Module</th>
-		<th>Block</th>
-		<th>Param</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td><?php echo(speRouter::$app); ?></td>
-		<td><?php echo(speRouter::$module); ?></td>
-		<td><?php echo(speRouter::$block); ?></td>
-		<td><?php echo(speRouter::$param); ?></td>
-	</tr>
-	</tbody>
-</table>
-
-<?php
-
-$s = $_GET['s'];
-$p = $_GET['p'];
-echo 'S: ' . $s . ' and P: ' . $p;
-
-//if (strpos($request, '?') !== false) {
-//list($s, $p) = explode('?', $request, 2);
-//} else {
-//$s = $request;
-//$p = '';
-//}
-
-
-/*if($url == 'index')
-{
-    # This is the home page
-    # Initiate the home controller
-    # and render the home view
-
-    require_once __DIR__.'/Models/index_model.php';
-    require_once __DIR__.'/Controllers/index_controller.php';
-    require_once __DIR__.'/Views/index_view.php';
-
-    $indexModel = New IndexModel();
-    $indexController = New IndexController($indexModel);
-    $indexView = New IndexView($indexController, $indexModel);
-
-    print $indexView->index();
-
-}
-else
-{
-    # This is not home page
-    # Initiate the appropriate controller
-    # and render the required view
-
-    //The first element should be a controller
-    $requestedController = $url[0]; 
-
-    # If a second part is added in the URI, 
-    # it should be a method
-    $requestedAction = isset($url[1])? $url[1] :'';
-
-    # Remaining parts are considered as arguments of the method
-    $requestedParams = array_slice($url, 2);
-
-    # Check if controller exists. NB: 
-    # You have to do that for the model and the view too
-    $ctrlPath = __DIR__.'/Controllers/'.$requestedController.'_controller.php';
-
-    
-}*/
+new speInit();

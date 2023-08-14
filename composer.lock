@@ -1,0 +1,81 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c5cfb51746cc9224a261107d4d57521f",
+    "packages": [
+        {
+            "name": "stechbd/sde",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/STechBD/S-Database-Explorer.git",
+                "reference": "69a467f70a33d4eee847e1832afda59c8f110656"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/STechBD/S-Database-Explorer/zipball/69a467f70a33d4eee847e1832afda59c8f110656",
+                "reference": "69a467f70a33d4eee847e1832afda59c8f110656",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "STechBD\\SDE\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "S Technologies",
+                    "email": "product@stechbd.net",
+                    "homepage": "https://www.stechbd.net",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Md. Ashraful Alam Shemul",
+                    "email": "aashemul@gmail.com",
+                    "homepage": "https://www.aashemul.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "SDE is a PHP library for creating and manipulating data structures.",
+            "homepage": "https://www.stechbd.net/project/SDE/",
+            "keywords": [
+                "aashemul",
+                "database",
+                "mysql",
+                "pdo",
+                "php",
+                "sde",
+                "stechbd"
+            ],
+            "support": {
+                "chat": "https://www.facebook.com/STechBD.Net/",
+                "docs": "https://docs.stechbd.net/SDE/",
+                "email": "product@stechbd.net",
+                "issues": "https://github.com/STechBD/SDE/issues",
+                "source": "https://github.com/STechBD/SDE",
+                "tickets": "https://clients.stechbd.net"
+            },
+            "time": "2023-07-16T05:59:15+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

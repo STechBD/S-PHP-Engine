@@ -4,7 +4,11 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
+# Rewrite URL without query string to index.php
+RewriteCond %{REQUEST_URI} ^/(.*)$
+RewriteRule ^(.*)$ index.php?s=$1 [QSA,L]
+
 # Rewrite URL with query string to index.php
 RewriteCond %{REQUEST_URI} ^/([^?]*)
 RewriteCond %{QUERY_STRING} ^(.+)$
-RewriteRule ^(.*)$ index.php?s=$1&p=%1 [L,B]
+RewriteRule ^(.*)$ index.php?s=$1&%1 [L]

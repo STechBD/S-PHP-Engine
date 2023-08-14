@@ -23,9 +23,12 @@
         "docs": "https://docs.stechbd.net/CookieCons/",
         "tickets": "https://clients.stechbd.net"
     },
+    "config": {
+        "vendor-dir": "src/spe-include/vendor"
+    },
     "autoload": {
         "psr-4": {
-            "STechBD\\SPE\\": "src/"
+            "STechBD\\SPE\\": "src/spe-include/"
         }
     },
     "authors": [
@@ -44,6 +47,6 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4"
+        "stechbd/sde": "^3.0.0"
     }
 }

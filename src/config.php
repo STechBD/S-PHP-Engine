@@ -18,32 +18,20 @@
  */
 
 
-namespace STechBD\SPE\System;
-
-use STechBD\SPE\System\DB as speDB;
-
 /**
  * Check if SPE is defined to prevent unauthorized access to this file.
  * @since 1.0.0
  */
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
 
-class App
-{
-	/**
-	 * @var string|null $theme Theme name.
-	 * @since 1.0.0
-	 */
-	public static string|null $theme = null;
-	/**
-	 * @var string|null $themePath Theme path.
-	 * @since 1.0.0
-	 */
-	public static string|null $themePath = null;
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$name = 'spe';
 
-	public function __construct()
-	{
-		self::$theme = speDB::$connection -> select('*', 'settings', 'id = 1')[0]['theme'] ?? 'SPE';
-		self::$themePath = SPE_INC . 'theme' . SPE_DS . self::$theme . SPE_DS;
-	}
-}
+require_once 'spe-include/system/DB.php';
+
+STechBD\SPE\System\DB::$host = $host;
+STechBD\SPE\System\DB::$user = $username;
+STechBD\SPE\System\DB::$password = $password;
+STechBD\SPE\System\DB::$name = $name;
