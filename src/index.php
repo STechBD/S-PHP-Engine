@@ -89,6 +89,7 @@ define('SPE_START_MEMORY_PEAK', memory_get_peak_usage());
  * Load the autoloader.
  * @since 1.0.0
  */
+require_once(SPE_ROOT . 'config.php');
 require_once(SPE_INC . 'vendor' . SPE_DS . 'autoload.php');
 
 /**

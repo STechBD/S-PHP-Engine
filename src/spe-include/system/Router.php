@@ -14,11 +14,11 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 13, 2023
+ * Updated: August 15, 2023
  */
 
 
-namespace System;
+namespace STechBD\SPE\System;
 
 /**
  * Check if SPE is defined to prevent unauthorized access to this file.

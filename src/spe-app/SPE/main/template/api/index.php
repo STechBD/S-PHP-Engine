@@ -14,7 +14,7 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 14, 2023
+ * Updated: August 16, 2023
  */
 
 
@@ -23,9 +23,3 @@
  * @since 1.0.0
  */
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
-
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$name = 'spe';
-$prefix = 'spe';

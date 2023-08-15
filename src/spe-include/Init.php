@@ -14,7 +14,7 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 14, 2023
+ * Updated: August 15, 2023
  */
 
 
@@ -30,21 +30,18 @@ use STechBD\SPE\System\Router as speRouter;
  */
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
 
-
 class Init
 {
 	public function __construct()
 	{
-		new speRouter();
 		new speDB();
+		new speRouter();
 		new speApp();
 
 		$controller = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'controller' . SPE_DS . speRouter::$block . '.php';
 		$model = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'model' . SPE_DS . speRouter::$block . '.php';
-		$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . 'template' . SPE_DS . speApp::$theme . SPE_DS . speRouter::$block . '.php';
+		$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . 'theme' . SPE_DS . speApp::$theme . SPE_DS . 'page' . SPE_DS . speRouter::$block . '.php';
 
-		require_once($controller);
-		require_once($model);
 		require_once($template);
 	}
 }

@@ -14,11 +14,11 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 14, 2023
+ * Updated: August 15, 2023
  */
 
 
-namespace System;
+namespace STechBD\SPE\System;
 
 use STechBD\SDE;
 
@@ -33,38 +33,18 @@ class DB
 	/**
 	 * The database connection.
 	 */
-	public static \STechBD\SDE|null $connection = null;
-	/**
-	 * @var string|null $host Host name of the database.
-	 * @since 1.0.0
-	 */
-	public static string|null $host = null;
-	/**
-	 * @var string|null $user Username of the database.
-	 * @since 1.0.0
-	 */
-	public static string|null $user = null;
-	/**
-	 * @var string|null $password Password of the database.
-	 * @since 1.0.0
-	 */
-	public static string|null $password = null;
-	/**
-	 * @var string|null $name Name of the database.
-	 * @since 1.0.0
-	 */
-	public static string|null $name = null;
+	public static ?SDE $connection = null;
 
 	public function __construct()
 	{
-		require_once(SPE_ROOT . 'config.php');
+		global $host, $username, $password, $name, $prefix;
 
-		global $host, $username, $password, $name;
-		self::$host = $host;
-		self::$user = $username;
-		self::$password = $password;
-		self::$name = $name;
+		self::$connection = new SDE($name, $username, $password, $host, $prefix);
 
-		self::$connection = new SDE(self::$name, self::$host, self::$user, self::$password);
+		$host = null;
+		$username = null;
+		$password = null;
+		$name = null;
+		$prefix = null;
 	}
 }
