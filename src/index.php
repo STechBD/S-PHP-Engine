@@ -95,15 +95,6 @@ require_once(SPE_INC . 'vendor' . SPE_DS . 'autoload.php');
  * Initialize the system.
  * @since 1.0.0
  */
-# use STechBD\SPE\Init as speInit;
+use STechBD\SPE\Init as speInit;
 
-# new speInit();
-
-// load se/gravatar-php library class
-
-$gv = new Gravatar\Service();
-echo $gv->get('aashemul@gmail.com');
-
-//$sde = new STechBD\SDE('spe');
-
-new STechBD\SDE();
+new speInit();

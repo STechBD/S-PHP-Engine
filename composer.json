@@ -47,7 +47,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-	"stechbd/sde": "^3.0.0",
+	"stechbd/sde": "^3.0.1",
 	"se/gravatar-php": "^1.1"
   },
   "require-dev": {
