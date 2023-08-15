@@ -18,7 +18,7 @@
  */
 
 
-namespace STechBD\SPE\System;
+namespace System;
 
 use STechBD\SPE\System\DB as speDB;
 
@@ -43,7 +43,7 @@ class App
 
 	public function __construct()
 	{
-		self::$theme = speDB::$connection -> select('*', 'settings', 'id = 1')[0]['theme'] ?? 'SPE';
+		self::$theme = speDB::$connection->select('*', 'settings', 'id = 1')[0]['theme'] ?? 'SPE';
 		self::$themePath = SPE_INC . 'theme' . SPE_DS . self::$theme . SPE_DS;
 	}
 }

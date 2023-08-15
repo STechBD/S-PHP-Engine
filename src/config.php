@@ -28,10 +28,3 @@ $host = 'localhost';
 $username = 'root';
 $password = '';
 $name = 'spe';
-
-require_once 'spe-include/system/DB.php';
-
-STechBD\SPE\System\DB::$host = $host;
-STechBD\SPE\System\DB::$user = $username;
-STechBD\SPE\System\DB::$password = $password;
-STechBD\SPE\System\DB::$name = $name;

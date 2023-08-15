@@ -14,7 +14,7 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: February 21, 2021
+ * Updated: August 14, 2021
  */
 
 
@@ -22,7 +22,6 @@
  * Check if SPE is running on PHP 7.4 or newer.
  * @since 1.0.0
  */
-
 if (PHP_VERSION_ID < 70400 === true) {
 	exit('SPE requires PHP 7.4 or newer.');
 }
@@ -46,7 +45,7 @@ const SPE_VERSION = '1.0.0';
 const SPE_VERSION_CODE = 1;
 
 /**
- * Defining required directories.
+ * Define required directories.
  *
  * @const SPE_DS Directory Separator
  * @const SPE_ROOT Root Directory
@@ -59,7 +58,6 @@ const SPE_VERSION_CODE = 1;
  *
  * @since 1.0.0
  */
-
 const SPE_DS = DIRECTORY_SEPARATOR;
 const SPE_ROOT = __DIR__ . SPE_DS;
 const SPE_APP = SPE_ROOT . 'spe-app' . SPE_DS;
@@ -88,15 +86,24 @@ define('SPE_START_MEMORY', memory_get_usage());
 define('SPE_START_MEMORY_PEAK', memory_get_peak_usage());
 
 /**
- * Loading the autoloader.
+ * Load the autoloader.
  * @since 1.0.0
  */
 require_once(SPE_INC . 'vendor' . SPE_DS . 'autoload.php');
 
 /**
- * Initializing the system.
+ * Initialize the system.
  * @since 1.0.0
  */
-use STechBD\SPE\Init as speInit;
+# use STechBD\SPE\Init as speInit;
 
-new speInit();
+# new speInit();
+
+// load se/gravatar-php library class
+
+$gv = new Gravatar\Service();
+echo $gv->get('aashemul@gmail.com');
+
+//$sde = new STechBD\SDE('spe');
+
+new STechBD\SDE();

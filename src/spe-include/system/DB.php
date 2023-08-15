@@ -18,7 +18,8 @@
  */
 
 
-namespace STechBD\SPE\System;
+namespace System;
+
 use STechBD\SDE;
 
 /**

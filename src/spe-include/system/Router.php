@@ -18,7 +18,7 @@
  */
 
 
-namespace STechBD\SPE\System;
+namespace System;
 
 /**
  * Check if SPE is defined to prevent unauthorized access to this file.
@@ -28,11 +28,6 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
 
 class Router
 {
-	/**
-	 * @var string[]|null $route Current route.
-	 * @since 1.0.0
-	 */
-	protected static ?array $route = null;
 	/**
 	 * @var string|null Current app.
 	 * @since 1.0.0
@@ -53,6 +48,11 @@ class Router
 	 * @since 1.0.0
 	 */
 	public static ?array $param = null;
+	/**
+	 * @var string[]|null $route Current route.
+	 * @since 1.0.0
+	 */
+	protected static ?array $route = null;
 
 	/**
 	 * The constructor of the class. The constructor will set the current route, app, module, block and parameters.
