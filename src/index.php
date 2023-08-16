@@ -14,7 +14,7 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 14, 2021
+ * Updated: August 16, 2021
  */
 
 
@@ -98,4 +98,4 @@ require_once(SPE_INC . 'vendor' . SPE_DS . 'autoload.php');
  */
 use STechBD\SPE\Init as speInit;
 
-new speInit();
+speInit::init();

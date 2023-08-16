@@ -14,12 +14,13 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 15, 2023
+ * Updated: August 16, 2023
  */
 
 
 namespace STechBD\SPE\System;
 
+use Exception;
 use STechBD\SDE;
 
 /**
@@ -32,10 +33,23 @@ class DB
 {
 	/**
 	 * The database connection.
+	 * @var SDE|null
+	 * @since 1.0.0
 	 */
 	public static ?SDE $connection = null;
 
-	public function __construct()
+	/**
+	 * The constructor method to initialize the database connection.
+	 * @global string $host The database host.
+	 * @global string $username The database username.
+	 * @global string $password The database password.
+	 * @global string $name The database name.
+	 * @global string $prefix The database table prefix.
+	 * @return void
+	 * @throws Exception If the database connection fails.
+	 * @since 1.0.0
+	 */
+	protected function __construct()
 	{
 		global $host, $username, $password, $name, $prefix;
 
@@ -46,5 +60,21 @@ class DB
 		$password = null;
 		$name = null;
 		$prefix = null;
+	}
+
+	/**
+	 * The init method to load the DB class.
+	 * @return DB|null
+	 * @since 1.0.0
+	 */
+	public static function init(): ?DB
+	{
+		$instance = null;
+
+		if ($instance === null) {
+			$instance = new self();
+		}
+
+		return $instance;
 	}
 }

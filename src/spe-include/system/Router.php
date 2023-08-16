@@ -14,7 +14,7 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 15, 2023
+ * Updated: August 16, 2023
  */
 
 
@@ -26,6 +26,10 @@ namespace STechBD\SPE\System;
  */
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
 
+/**
+ * The Router class to handle the routes.
+ * @since 1.0.0
+ */
 class Router
 {
 	/**
@@ -60,7 +64,7 @@ class Router
 	 * @return void
 	 * @since 1.0.0
 	 */
-	public function __construct()
+	protected function __construct()
 	{
 		self::$route = isset($_GET['s']) ? explode('/', str_replace('//', '/', rtrim(ltrim($_GET['s'], '/'), '/'))) : null;
 
@@ -68,9 +72,9 @@ class Router
 			self::$route = null;
 		}
 
-		self::$app = self::$route[0] ?? 'spe';
-		self::$module = self::$route[1] ?? 'main';
-		self::$block = self::$route[2] ?? 'index';
+		self::$app = strtolower(self::$route[0] ?? 'spe');
+		self::$module = strtolower(self::$route[1] ?? 'main');
+		self::$block = strtolower(self::$route[2] ?? 'default');
 
 		if (is_array($_GET) && count($_GET) > 1) {
 			foreach ($_GET as $key => $value) {
@@ -79,5 +83,21 @@ class Router
 				}
 			}
 		}
+	}
+
+	/**
+	 * The init method to load the Router class.
+	 * @return Router|null
+	 * @since 1.0.0
+	 */
+	public static function init(): ?Router
+	{
+		$instance = null;
+
+		if ($instance === null) {
+			$instance = new self();
+		}
+
+		return $instance;
 	}
 }

@@ -14,15 +14,15 @@
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
  * Created: August 14, 2020
- * Updated: August 15, 2023
+ * Updated: August 16, 2023
  */
 
 
 namespace STechBD\SPE;
 
-use STechBD\SPE\System\App as speApp;
 use STechBD\SPE\System\DB as speDB;
 use STechBD\SPE\System\Router as speRouter;
+use STechBD\SPE\System\App as speApp;
 
 /**
  * Check if SPE is defined to prevent unauthorized access to this file.
@@ -32,17 +32,43 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
 
 class Init
 {
-	public function __construct()
+	/**
+	 * The constructor method to initialize the SPE.
+	 * It loads the database, router, and app and finally loads the controller, model, and template.
+	 * @since 1.0.0
+	 * @return void
+	 */
+	protected function __construct()
 	{
-		new speDB();
-		new speRouter();
-		new speApp();
+		speDB::init();
+		speRouter::init();
+		speApp::init();
 
 		$controller = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'controller' . SPE_DS . speRouter::$block . '.php';
 		$model = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'model' . SPE_DS . speRouter::$block . '.php';
 		$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . 'theme' . SPE_DS . speApp::$theme . SPE_DS . 'page' . SPE_DS . speRouter::$block . '.php';
 
+		require_once($controller);
+		require_once($model);
 		require_once($template);
+
+		speApp::load();
+	}
+
+	/**
+	 * The init method to load the Init class.
+	 * @since 1.0.0
+	 * @return Init|null
+	 */
+	public static function init(): ?Init
+	{
+		$instance = null;
+
+		if ($instance === null) {
+			$instance = new self();
+		}
+
+		return $instance;
 	}
 }
 
