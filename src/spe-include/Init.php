@@ -20,9 +20,9 @@
 
 namespace STechBD\SPE;
 
+use STechBD\SPE\System\App as speApp;
 use STechBD\SPE\System\DB as speDB;
 use STechBD\SPE\System\Router as speRouter;
-use STechBD\SPE\System\App as speApp;
 
 /**
  * Check if SPE is defined to prevent unauthorized access to this file.
@@ -35,8 +35,8 @@ class Init
 	/**
 	 * The constructor method to initialize the SPE.
 	 * It loads the database, router, and app and finally loads the controller, model, and template.
+	 * @return void Nothing.
 	 * @since 1.0.0
-	 * @return void
 	 */
 	protected function __construct()
 	{
@@ -44,9 +44,13 @@ class Init
 		speRouter::init();
 		speApp::init();
 
-		$controller = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'controller' . SPE_DS . speRouter::$block . '.php';
-		$model = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'model' . SPE_DS . speRouter::$block . '.php';
-		$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . 'theme' . SPE_DS . speApp::$theme . SPE_DS . 'page' . SPE_DS . speRouter::$block . '.php';
+		[$controller, $model, $template] = self::file();
+
+		if (!file_exists($controller) || !file_exists($model) || !file_exists($template)) {
+			speRouter::error();
+
+			[$controller, $model, $template] = self::file();
+		}
 
 		require_once($controller);
 		require_once($model);
@@ -57,8 +61,8 @@ class Init
 
 	/**
 	 * The init method to load the Init class.
+	 * @return Init|null The Init class.
 	 * @since 1.0.0
-	 * @return Init|null
 	 */
 	public static function init(): ?Init
 	{
@@ -69,6 +73,28 @@ class Init
 		}
 
 		return $instance;
+	}
+
+	/**
+	 * The file method to get the controller, model, and template file.
+	 * @return string[] The controller, model, and template file.
+	 * @since 1.0.0
+	 */
+	protected static function file(): array
+	{
+		$type = speRouter::$type;
+
+		if ($type === 'page') {
+			$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . 'theme' . SPE_DS . speApp::$theme . SPE_DS . 'page' . SPE_DS . speRouter::$block . '.php';
+		} else {
+			$template = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'template' . SPE_DS . $type . SPE_DS . speRouter::$block . '.php';
+		}
+
+		$controller = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'controller' . SPE_DS . speRouter::$block . '.php';
+		$model = SPE_APP . speRouter::$app . SPE_DS . speRouter::$module . SPE_DS . 'model' . SPE_DS . speRouter::$block . '.php';
+
+
+		return array($controller, $model, $template);
 	}
 }
 

@@ -28,13 +28,13 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
  * The Index class to handle the index page.
  * @since 1.0.0
  */
-class DefaultController
+class E404Controller
 {
 	/**
-	 * @var DefaultModel|null $model The model.
+	 * @var E404Model|null $model The model.
 	 * @since 1.0.0
 	 */
-	private static ?DefaultModel $model = null;
+	private static ?E404Model $model = null;
 
 	/**
 	 * The constructor method to initialize the index page.
@@ -48,11 +48,11 @@ class DefaultController
 
 	/**
 	 * The output method to output the index page.
-	 * @param DefaultModel $model
-	 * @return DefaultController
+	 * @param E404Model $model The model.
+	 * @return E404Controller
 	 * @since 1.0.0
 	 */
-	public static function load(DefaultModel $model): DefaultController
+	public static function load(E404Model $model): E404Controller
 	{
 		self::$model = $model;
 

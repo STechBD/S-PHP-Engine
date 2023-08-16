@@ -43,7 +43,6 @@ class App
 	/**
 	 * @var string|null $themePath Theme path.
 	 * @since 1.0.0
-	 * @todo Add theme path.
 	 */
 	public static string|null $themePath = null;
 	/**
@@ -54,7 +53,7 @@ class App
 
 	/**
 	 * The constructor method to initialize the app.
-	 * @return void
+	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
 	protected function __construct()
@@ -67,7 +66,7 @@ class App
 
 	/**
 	 * The init method to load the App class.
-	 * @return App|null
+	 * @return App|null The App class.
 	 * @since 1.0.0
 	 */
 	public static function init(): ?App
@@ -83,15 +82,21 @@ class App
 
 	/**
 	 * The load method to the block of the app.
-	 * @return void
+	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
 	public static function load(): void
 	{
+		$type = speRouter::$type;
 		$block = ucfirst(speRouter::$block);
 		$controller = $block . 'Controller';
 		$model = $block . 'Model';
-		$template = $block . 'View';
+
+		if (speRouter::$type === 'page') {
+			$template = $block . 'Page';
+		} else {
+			$template = $block . strtoupper($type);
+		}
 
 		if (self::$debug) {
 			$template::load($controller::load($model::load(speDB::$connection)));

@@ -28,13 +28,13 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
  * The Index class to handle the index page.
  * @since 1.0.0
  */
-class DefaultController
+class DefaultAPI
 {
 	/**
-	 * @var DefaultModel|null $model The model.
+	 * @var DefaultController|null $controller The controller.
 	 * @since 1.0.0
 	 */
-	private static ?DefaultModel $model = null;
+	private static ?DefaultController $controller = null;
 
 	/**
 	 * The constructor method to initialize the index page.
@@ -48,14 +48,23 @@ class DefaultController
 
 	/**
 	 * The output method to output the index page.
-	 * @param DefaultModel $model
-	 * @return DefaultController
+	 * @param DefaultController $controller The controller.
+	 * @return void Nothing is returned from this method.
+	 * @throws JsonException
 	 * @since 1.0.0
 	 */
-	public static function load(DefaultModel $model): DefaultController
+	public static function load(DefaultController $controller): void
 	{
-		self::$model = $model;
+		self::$controller = $controller;
 
-		return new self();
+		new self();
+
+		$array = [
+			'status'    =>  'success',
+			'data'      =>  'Hello from the DefaultAPI() page!',
+		];
+		$json = json_encode($array, JSON_THROW_ON_ERROR);
+
+		echo $json;
 	}
 }

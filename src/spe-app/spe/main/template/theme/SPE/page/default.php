@@ -28,7 +28,7 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
  * The Index class to handle the index page.
  * @since 1.0.0
  */
-class DefaultView
+class DefaultPage
 {
 	/**
 	 * @var DefaultController|null $controller The controller.
@@ -38,7 +38,7 @@ class DefaultView
 
 	/**
 	 * The constructor method to initialize the index page.
-	 * @return void
+	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
 	protected function __construct()
@@ -49,7 +49,7 @@ class DefaultView
 	/**
 	 * The output method to output the index page.
 	 * @param DefaultController $controller
-	 * @return void
+	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
 	public static function load(DefaultController $controller): void
@@ -58,6 +58,6 @@ class DefaultView
 
 		new self();
 
-		echo 'Hello from DefaultView() page!';
+		echo 'Hello from the DefaultPage() page!';
 	}
 }

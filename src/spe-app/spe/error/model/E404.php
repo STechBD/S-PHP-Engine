@@ -18,6 +18,8 @@
  */
 
 
+use STechBD\SDE;
+
 /**
  * Check if SPE is defined to prevent unauthorized access to this file.
  * @since 1.0.0
@@ -28,13 +30,13 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
  * The Index class to handle the index page.
  * @since 1.0.0
  */
-class DefaultController
+class E404Model
 {
 	/**
-	 * @var DefaultModel|null $model The model.
+	 * @var SDE|null $database The database connection.
 	 * @since 1.0.0
 	 */
-	private static ?DefaultModel $model = null;
+	private static ?SDE $database = null;
 
 	/**
 	 * The constructor method to initialize the index page.
@@ -48,13 +50,13 @@ class DefaultController
 
 	/**
 	 * The output method to output the index page.
-	 * @param DefaultModel $model
-	 * @return DefaultController
+	 * @param SDE $database The database connection.
+	 * @return E404Model
 	 * @since 1.0.0
 	 */
-	public static function load(DefaultModel $model): DefaultController
+	public static function load(SDE $database): E404Model
 	{
-		self::$model = $model;
+		self::$database = $database;
 
 		return new self();
 	}

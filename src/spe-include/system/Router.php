@@ -33,25 +33,31 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
 class Router
 {
 	/**
-	 * @var string|null Current app.
+	 * @var string|null $type Request type.
+	 * @since 1.0.0
+	 */
+	public static ?string $type = null;
+
+	/**
+	 * @var string|null $app Current app.
 	 * @since 1.0.0
 	 */
 	public static ?string $app = null;
 	/**
-	 * @var string|null Current module of the app.
+	 * @var string|null $module Current module of the app.
 	 * @since 1.0.0
 	 */
 	public static ?string $module = null;
 	/**
-	 * @var string|null Current block of the module.
+	 * @var string|null $block Current block of the module.
 	 * @since 1.0.0
 	 */
 	public static ?string $block = null;
 	/**
-	 * @var array|null Parameters received from the get method of the URL.
+	 * @var array|null $parameter Parameters received from the get method of the URL.
 	 * @since 1.0.0
 	 */
-	public static ?array $param = null;
+	public static ?array $parameter = null;
 	/**
 	 * @var string[]|null $route Current route.
 	 * @since 1.0.0
@@ -60,8 +66,7 @@ class Router
 
 	/**
 	 * The constructor of the class. The constructor will set the current route, app, module, block and parameters.
-	 *
-	 * @return void
+	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
 	protected function __construct()
@@ -72,14 +77,27 @@ class Router
 			self::$route = null;
 		}
 
-		self::$app = strtolower(self::$route[0] ?? 'spe');
-		self::$module = strtolower(self::$route[1] ?? 'main');
-		self::$block = strtolower(self::$route[2] ?? 'default');
+		if (isset(self::$route[0]) && strtolower(self::$route[0]) === 'ajax') {
+			self::$type = 'ajax';
+			self::$app = strtolower(self::$route[1] ?? 'spe');
+			self::$module = strtolower(self::$route[2] ?? 'main');
+			self::$block = strtolower(self::$route[3] ?? 'default');
+		} elseif (isset(self::$route[0]) && strtolower(self::$route[0]) === 'api') {
+			self::$type = 'api';
+			self::$app = strtolower(self::$route[1] ?? 'spe');
+			self::$module = strtolower(self::$route[2] ?? 'main');
+			self::$block = strtolower(self::$route[3] ?? 'default');
+		} else {
+			self::$type = 'page';
+			self::$app = strtolower(self::$route[0] ?? 'spe');
+			self::$module = strtolower(self::$route[1] ?? 'main');
+			self::$block = strtolower(self::$route[2] ?? 'default');
+		}
 
 		if (is_array($_GET) && count($_GET) > 1) {
 			foreach ($_GET as $key => $value) {
 				if ($key !== 's') {
-					self::$param[$key] = $value;
+					self::$parameter[$key] = $value;
 				}
 			}
 		}
@@ -99,5 +117,22 @@ class Router
 		}
 
 		return $instance;
+	}
+
+	/**
+	 * The error method to set the error module route.
+	 * @param string $type The error type.
+	 * @return void Nothing is returned from this method.
+	 * @since 1.0.0
+	 */
+	public static function error(string $type = '404'): void
+	{
+		self::$app = 'spe';
+		self::$module = 'error';
+		self::$block = match ($type) {
+			'403' => 'e403',
+			'500' => 'e500',
+			default => 'e404',
+		};
 	}
 }

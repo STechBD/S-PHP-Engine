@@ -40,7 +40,7 @@ class DefaultModel
 
 	/**
 	 * The constructor method to initialize the index page.
-	 * @return void
+	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
 	protected function __construct()
