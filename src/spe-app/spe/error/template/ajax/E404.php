@@ -13,8 +13,8 @@
  * Developer: S Technologies
  * Homepage: https://www.stechbd.net
  * Contact: product@stechbd.net
- * Created: August 14, 2020
- * Updated: August 16, 2023
+ * Created: August 17, 2023
+ * Updated: August 17, 2023
  */
 
 
@@ -28,7 +28,7 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
  * The Index class to handle the index page.
  * @since 1.0.0
  */
-class E404Page
+class E404AJAX
 {
 	/**
 	 * @var E404Controller|null $controller The controller.
@@ -48,7 +48,7 @@ class E404Page
 
 	/**
 	 * The output method to output the index page.
-	 * @param E404Controller $controller The controller.
+	 * @param E404Controller $controller
 	 * @return void Nothing is returned from this method.
 	 * @since 1.0.0
 	 */
@@ -60,6 +60,6 @@ class E404Page
 
 		header('HTTP/1.1 404 Not Found');
 
-		echo 'Hello from the E404Page() page!';
+		echo 'Hello from the E404AJAX() page!';
 	}
 }

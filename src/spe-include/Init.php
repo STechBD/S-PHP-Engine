@@ -30,6 +30,10 @@ use STechBD\SPE\System\Router as speRouter;
  */
 defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file directly.');
 
+/**
+ * The init class to initialize SPE.
+ * @since 1.0.0
+ */
 class Init
 {
 	/**

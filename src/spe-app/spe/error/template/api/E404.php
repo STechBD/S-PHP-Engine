@@ -28,7 +28,7 @@ defined('SPE') or exit('You can not access this \'S PHP Engine (SPE)\' file dire
  * The Index class to handle the index page.
  * @since 1.0.0
  */
-class E404Page
+class E404API
 {
 	/**
 	 * @var E404Controller|null $controller The controller.
@@ -50,6 +50,7 @@ class E404Page
 	 * The output method to output the index page.
 	 * @param E404Controller $controller The controller.
 	 * @return void Nothing is returned from this method.
+	 * @throws JsonException
 	 * @since 1.0.0
 	 */
 	public static function load(E404Controller $controller): void
@@ -58,8 +59,14 @@ class E404Page
 
 		new self();
 
+		$array = [
+			'status'    =>  'success',
+			'data'      =>  'Hello from the E404API() page!',
+		];
+		$json = json_encode($array, JSON_THROW_ON_ERROR);
+
 		header('HTTP/1.1 404 Not Found');
 
-		echo 'Hello from the E404Page() page!';
+		echo $json;
 	}
 }
