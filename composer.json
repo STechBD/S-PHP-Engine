@@ -10,7 +10,9 @@
 	"simple",
 	"engine",
 	"spe",
-	"sphpengine"
+	"sphpengine",
+	"stechbd",
+	"aashemul"
   ],
   "type": "framework",
   "license": "STechBD",
